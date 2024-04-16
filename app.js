@@ -18,6 +18,11 @@ app.use((err, _req, res, _next) => {
   }
 });
 
+
+// API  Routes
+
+// app.use('/users', usersRouter); TODO -> create users Router
+
 const listenForRequests = () => {
   const port = process.env.PORT || 3000;
   app.listen(port, () => {
