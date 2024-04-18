@@ -1,6 +1,6 @@
 const User = require('../models/user');
 
-export const createUser = async (req, res) => {
+const createUser = async (req, res) => {
   try {
 
     // retrieve user email / passoword from request body
@@ -11,6 +11,7 @@ export const createUser = async (req, res) => {
       email,
       password,
     });
+    console.log("BE - user details received")
 
     // save user details 
     const savedUser = await user.save()
