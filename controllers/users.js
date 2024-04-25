@@ -37,8 +37,28 @@ const createUser = async (req, res) => {
   };
 };
 
+const getUser = async (req, res) => {
+  try {
+    const token = generateToken(req.params.id);
+    const user = await User.findOne({ _id: req.params.id });
+
+    if (!user) {
+      console.log(req.params.id);
+      console.log("Auth Error: User not found");
+      return res.status(401).json({ message: "User not found" });
+    }
+
+    res.status(200).json({ user, token });
+  } catch (error) {
+    console.error("Error fetching user:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+
 const UsersController = {
   createUser: createUser,
+  getUser: getUser,
 }
 
 module.exports = UsersController;
